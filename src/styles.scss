@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+$primary-color: rgb(119, 158, 11);
+$primary-color-hover: rgb(119, 158, 11);
+
+.component-style {
+    margin: auto;
+    width: 85%;
+}
+
+.form-control.ng-touched.ng-invalid {
+    border: 1px solid red;
+}
+
+.no-border-radius {
+    border-radius: 0% !important;
+}
+
+.loaderCenter {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
+    color: $primary-color-hover !important;
+}
+
+.list-group-item.active {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.btn-primary {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.btn-primary:hover {
+    background-color: $primary-color-hover !important;
+    border-color: $primary-color-hover !important;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    background-color: $primary-color !important;
+    border-color: $primary-color !important;
+}
+
+.form-control:focus {
+    border-color: $primary-color !important;
+}
+
+.border-line {
+    border-right: 3px solid $primary-color !important;
+}
+
+.bg-footer {
+    background-color: $primary-color !important;
+}
+
+.dropdown-item:hover,
+.dropdown-item:active {
+    background-color: $primary-color !important;
+}

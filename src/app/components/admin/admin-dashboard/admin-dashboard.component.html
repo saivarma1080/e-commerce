@@ -1,0 +1,31 @@
+<div class="card component_content">
+  <div class="row">
+    <div class="col-6">
+      <div class="card text-center m-3">
+        <div class="card-header">Product Usage Report - Donut Chart</div>
+        <div class="card-body">
+          <donut-chart [donutChartInput]="saleProductDataInput" [keys]="{ x: 'name', y: 'value' }" [loading]="loader"
+            noDataMessage="No data found..!">
+          </donut-chart>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="card text-center  m-3">
+        <div class="card-header">Product Usage Report - Pie Chart</div>
+        <div class="card-body">
+          <pie-chart [pieChartInput]="saleProductDataInput" [keys]="{ x: 'name', y: 'value' }" [loading]="loader"
+            noDataMessage="No data found..!">
+          </pie-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card text-center  m-3">
+    <div class="card-header">Product Usage Report - Bar Chart</div>
+    <div class="card-body">
+      <bar-chart [barChartInput]="saleProductDataInput" [keys]="{ x: 'name', y: 'value' }" [loading]="loader"
+        noDataMessage="No data found..!"></bar-chart>
+    </div>
+  </div>
+</div>

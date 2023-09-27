@@ -1,0 +1,87 @@
+<div class="card component_content">
+    <div class="row p-3">
+        <div class="col-md-6" style="padding: 1rem;">
+            <h1>Shopping Cart</h1>
+        </div>
+        <div class="col-md-6">
+            <div *ngIf="totalItemsCount == 0" style="text-align: right;margin-top : 2rem">
+                <a routerLink="/products" class="btn btn-primary">Add Item(s)</a>
+            </div>
+        </div>
+    </div>
+    <div class="card  m-3">
+        <div class="card-body">
+            <p>
+                You have {{ totalItemsCount }} items in your shopping cart.
+                <button *ngIf="totalItemsCount>0" (click)="clearCart()"
+                    class="float-end btn btn-light btn-sm btn-outline-warning">Clear
+                    Shopping Cart</button>
+            </p>
+            <hr>
+        </div>
+        <table class="table" style="margin-bottom:0rem !important">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Product</th>
+                    <th class="text-center" style="width: 250px">Quantity</th>
+                    <th class="text-center" style="width: 250px">Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of _cartItems">
+                    <td>
+                        <div [style.backgroundImage]="'url(' + item.imageUrl + ')'" class="thumbnail">
+                        </div>
+                    </td>
+                    <td style="vertical-align: middle;">
+                        {{ item.title }}
+                    </td>
+                    <td style="vertical-align: middle;">
+                        <div class="row no-gutters">
+                            <div class="col-2">
+                                <button (click)="removeFromCart(item)" class="btn btn-secondary btn-block">
+                                    <i class="bi bi-dash-lg"></i>
+                                </button>
+                            </div>
+                            <div class="col text-center quantity">
+                                {{ item.quantity }} in cart
+                            </div>
+                            <div class="col-2">
+                                <button (click)="addToCart(item)" class="btn btn-secondary btn-block">
+                                    <i class="bi bi-plus-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="vertical-align: middle;" class="text-center">
+                        {{ item.totalPrice | currency:'INR':'symbol' }}
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th class="text-center">{{ totalPrice | currency:'INR':'symbol' }}</th>
+                </tr>
+                <tr>
+                    <th>
+                        <div *ngIf="totalItemsCount > 0">
+                            <a routerLink="/products" class="btn btn-secondary"><i class="bi bi-cart-plus"></i> Add more
+                                item(s)</a>
+                        </div>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th class="text-center">
+                        <button [disabled]="totalItemsCount==0" (click)="checkOut()" class="btn btn-primary">
+                            <i class="bi bi-check2-all"></i> Check Out
+                        </button>
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

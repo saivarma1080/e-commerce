@@ -1,0 +1,96 @@
+<div class="card component_content">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div style="text-align: right;margin-right: 1rem !important; " class="mb-3 mt-3">
+                <button (click)="addProduct()" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#productModal">New Product</button>
+            </div>
+        </div>
+    </div>
+    <div style="margin: 0rem 1rem 1rem 1rem !important;" class="form-group form-inline">
+        <input class="form-control ml-2" type="text" placeholder="Search product..." name="searchTerm"
+            [(ngModel)]="searchTerm" (keyup)="loadProducts()" />
+    </div>
+    <div style="margin: 0rem 1rem 1rem 1rem !important;">
+        <div class="col-12">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table  mb-0">
+                        <thead class="thead-light">
+                            <tr class="bg-light ">
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Action(s)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="customtable">
+                            <tr *ngFor="let product of products  | paginate:{itemsPerPage:4, currentPage:pageNumber}">
+                                <td> <img [src]="product.imageUrl" class="rounded-circle" width="30" height="30"></td>
+                                <td>{{ product.title }}</td>
+                                <td>{{ getCategory(product.category) }}</td>
+                                <td>{{ product.price | currency:'INR' }}</td>
+                                <td style="width: 15%;">
+                                    <button (click)="editProduct(product)" data-bs-toggle="modal"
+                                        data-bs-target="#productModal" class="btn btn-secondary"><i
+                                            class="bi bi-pencil-square"></i></button>
+                                    &nbsp;
+                                    <button (click)="deleteProduct(product.id)" class="btn btn-danger"><i
+                                            class="bi bi-trash"></i></button>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="text-center">
+                                    <pagination-controls (pageChange)="pageNumber = $event"></pagination-controls>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="productModalLabel">{{ modalHeader }}</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="productForm">
+                        <div class="mb-3">
+                            <input formControlName="title" [(ngModel)]="product.title" class="form-control" name="title"
+                                placeholder="Enter the title">
+                        </div>
+                        <div class="mb-3">
+                            <input formControlName="price" [(ngModel)]="product.price" class="form-control" name="price"
+                                placeholder="Enter the price" type="number">
+                        </div>
+                        <div class="mb-3">
+                            <select formControlName="category" class="form-select form-select-lg mb-3"
+                                [(ngModel)]="product.category" name="category" class="form-control">
+                                <option *ngFor="let category of categories" [value]="category.id">
+                                    {{ category.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input formControlName="imageUrl" [(ngModel)]="product.imageUrl" class="form-control"
+                                name="imageUrl" placeholder="Enter the imageUrl">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button [disabled]="productForm.invalid" (click)="saveProduct()" type="button"
+                        data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

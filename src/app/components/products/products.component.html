@@ -1,0 +1,70 @@
+<div class="card component_content">
+    <div class="row filterCard">
+        <div class="col-md-3">
+            <select class="form-control" [ngModel]="selectedCategory" (change)="changeCategory($event)">
+                <option value="">All Categories</option>
+                <option *ngFor="let category of categories" [ngValue]="category.id">
+                    {{ category.name }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-9">
+            <input class="form-control ml-2" type="text" placeholder="Search product..." name="searchTerm"
+                [(ngModel)]="searchTerm" (keyup)="loadProducts()" />
+        </div>
+        <div class="col-md-12">
+            <hr>
+        </div>
+    </div>
+    <div class="row p-3">
+        <ng-container *ngFor="let product of products; let index = index">
+            <div class="col">
+                <div class="card" >
+                    <img class="card-img-top zoom" [src]="product.imageUrl" alt="{{ product.title }}">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ product.title }}</h6>
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%;">
+                                    <p class="card-text">{{ product.price | currency:'INR'}}</p>
+                                </td>
+                                <td *ngIf="authService.displayName" style="width: 50%;text-align: right;">
+                                    <button *ngIf="!wishlistExists(product.id)" class="btn btn-outline-warning"
+                                        (click)="addToWishlist(product)">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                    <button *ngIf="wishlistExists(product.id)" class="btn btn-warning"
+                                        (click)="removeFromWishlist(product.id)">
+                                        <i class="bi bi-heart-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                     </div>
+
+                    <div class="card-footer">
+                        <button *ngIf="getQuantity(product)===0" class="btn btn-secondary" (click)="addToCart(product)">
+                            <i class="bi bi-cart"></i> Add to Cart
+                        </button>
+                    </div>
+                    <div *ngIf="getQuantity(product)>0" class="row">
+                        <div class="col-3" style="display: grid;">
+                            <button (click)=" removeFromCart(product)" class="btn btn-secondary">
+                                <i class="bi bi-dash-lg"></i>
+                            </button>
+                        </div>
+                        <div class="col text-center quantity">
+                            {{ getQuantity(product) }} in cart
+                        </div>
+                        <div class="col-3" style="display: grid;">
+                            <button (click)="addToCart(product)" class="btn btn-secondary">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="(index + 1) % 5 === 0" class="w-100"></div>
+        </ng-container>
+    </div>
+</div>

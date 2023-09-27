@@ -1,0 +1,66 @@
+<div class="card component_content">
+    <section>
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5" style="margin: 2rem !important; padding: 1px; border-radius: 10px">
+                    <img src="assets/logimage.png" class="img-fluid rounded" alt="Sample image" />
+                </div>
+                <div style="margin: 2rem !important; padding: 30px; border-radius: 10px"
+                    class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 shadow">
+                    <form #f="ngForm" class="form-signin">
+                        <h1 class="h3 mb-3 font-weight-normal " style="color:#42B3C3 ;font-style:italic;">REGISTRATION</h1>
+
+                        <input name="email" [(ngModel)]="userDetail.email" type="email" id="inputEmail"
+                            class="form-control mb-3" placeholder="Email address" required />
+                        <input name="firstName" [(ngModel)]="userDetail.firstName" type="text" id="inputFirstname"
+                            class="form-control mb-3" placeholder="First Name" />
+                        <input name="lastName" [(ngModel)]="userDetail.lastName" type="text" id="inputLastName"
+                            class="form-control mb-3" placeholder="Last Name" />
+                        <input name="displayName" [(ngModel)]="userDetail.displayName" type="text" id="inputDisplayName"
+                            class="form-control mb-3" placeholder="Display Name" required />
+                        <input name="password" [(ngModel)]="userDetail.password" type="password" id="inputPassword"
+                            class="form-control mb-3" placeholder="Password" required />
+
+                        <div style="--bs-gutter-x: 0 !important" class="row">
+                            <button (click)="registerAccount()" [disabled]="!f.valid" class="btn btn-primary fw-bold"
+                                type="submit">
+                                REGISTER
+                            </button>
+                        </div>
+
+                        <div>
+                            <p class="text-center mt-3 text-secondary">
+                                If you have account, Please <a routerLink="/login"><b>Login</b></a> Now
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div
+        class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-footer">
+        <!-- Copyright -->
+        <div class="text-white mb-3 mb-md-0">
+            Copyright © 2023. All rights reserved.
+        </div>
+        <!-- Copyright -->
+
+        <!-- Right -->
+        <div>
+            <a href="#!" class="text-white me-4">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="bi bi-google"></i>
+            </a>
+            <a href="#!" class="text-white">
+                <i class="bi bi-linkedin"></i>
+            </a>
+        </div>
+        <!-- Right -->
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="card component_content">
+    <section >
+        <div class="container-fluid h-custom">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-md-9 col-lg-6 col-xl-5  "       style="margin: 2rem !important; padding: 1px; border-radius: 10px">
+                    <img src="assets/logimage.png" class="img-fluid rounded  "   alt="Sample image" />
+                </div>
+                <div style="margin: 3rem !important; padding: 30px; border-radius: 10px"
+                    class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 shadow">
+                    <form #f="ngForm" class="form-signin">  
+                        <h1 class="h3 mb-3 font-weight-normal  " style="color:#FFAC33" >LOGIN</h1>
+
+                        <input name="email" [(ngModel)]="userDetail.email" type="email" type="email" id="inputEmail"
+                            class="form-control mb-3" placeholder="Email address" required />
+                        <input name="password" [(ngModel)]="userDetail.password" type="password" id="inputPassword"
+                            class="form-control mb-3" placeholder="Password" required />
+
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" value="remember-me" /> Remember me
+                            </label>
+                        </div>
+                        <div style="--bs-gutter-x: 0 !important" class="row">
+                            <button (click)="login()" [disabled]="!f.valid" class="btn btn-primary fw-bold"
+                                type="submit">
+                                LOGIN
+                            </button>
+                        </div>
+                        <p class="text-center mt-3 text-secondary">
+                             Don't have account 
+                            <a routerLink="/registration"><b>Register Here</b></a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div
+        class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-footer">
+        <!-- Copyright -->
+    
+        <div class="text-white mb-3 mb-md-0">
+       
+            <Marquee>Copyright © 2023. All rights reserved.</Marquee>
+        </div>
+        <!-- Copyright -->
+
+        <!-- Right -->
+        <div>
+            <a href="#!" class="text-white me-4">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="#!" class="text-white me-4">
+                <i class="bi bi-google"></i>
+            </a>
+            <a href="#!" class="text-white">
+                <i class="bi bi-linkedin"></i>
+            </a>
+        
+        </div>
+        
+        <!-- Right -->
+    </div>
+
+    
+</div>

@@ -1,0 +1,47 @@
+<div class="card component-style">
+    <div class="row p-3" *ngIf="wishlist.length > 0 ;else noData">
+        <ng-container *ngFor="let wishlistItem of wishlist; let _index = index">
+            <div class="col">
+                <div class="card">
+                    <img class="card-img-top hover-effect" [src]="wishlistItem.imageUrl" alt="{{ wishlistItem.title }}">
+                    <div class="card-body">
+                        <h6 class="card-title">{{ wishlistItem.title }}</h6>
+                        <p class="card-text">{{ wishlistItem.price | currency:'INR'}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%;vertical-align: middle;">
+                                    <button type="button" class="btn btn-outline-success"
+                                        (click)="addToCart(wishlistItem)">
+                                        <i class="bi bi-cart-plus"></i> Add to cart
+                                    </button>
+                                </td>
+                                <td style="width: 50%;text-align: right;">
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="removeFromWishlist(wishlistItem.id)">
+                                        <i class="bi bi-trash"></i> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="(_index + 1) % 4 === 0" class="w-100"></div>
+        </ng-container>
+    </div>
+    <ng-template #noData>
+        <div id="notfound">
+            <div class="notfound">
+                <div class="notfound-404">
+                    <h1>Ohh!</h1>
+                    <h2>404 - No Data Found !</h2>
+                </div>
+                <button routerLink="/products" class="btn btn-secondary">
+                    <i class="bi bi-chevron-double-left"></i>ADD ITEM(S)
+                </button>
+            </div>
+        </div>
+    </ng-template>
+</div>

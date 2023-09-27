@@ -1,0 +1,14 @@
+.table thead th {
+  vertical-align: bottom;
+  border-bottom: 1px solid #dee2e6;
+}
+.table th,
+.table thead th {
+  font-weight: 500;
+}
+.sr-only {
+  display: none !important;
+}
+.sortable {
+  cursor: pointer;
+}
